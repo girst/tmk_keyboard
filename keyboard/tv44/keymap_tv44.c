@@ -5,7 +5,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,-------------------------------------------------.
     * |Esc|  Q|  W|  E|  R|  T|  Z|  U|  I|  O|  P| BSp |
     * |-------------------------------------------------|
-    * |Ctrl|  A|  S|  D|  F|  G|  H|  J|  K|  L|  /|Fn2 |
+    * |C/^I|  A|  S|  D|  F|  G|  H|  J|  K|  L|  /|Fn2 |
     * |-------------------------------------------------|
     * |Shift|  Y|  X|  C|  V|  B|  N|  M|  ,|  .|  -|Sft|
     * |-------------------------------------------------|
@@ -14,9 +14,9 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    KEYMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
-     LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,FN10, FN1,  \
+     LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,FN11, FN2,  \
      LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,SLSH, RSHIFT, \
-     LALT,  FN1,  LGUI,     ENT,       SPC,   RALT,   RSFT,  FN2    ),
+     LALT,  FN1,  LGUI,     ENT,       SPC,   RALT,   RSFT,  FN3    ),
 
    /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) TOGGLE
     * ,-------------------------------------------------.
@@ -41,15 +41,15 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-------------------------------------------------|
     * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  ' |
     * |-------------------------------------------------|
-    * |    #|  <|  ||  >|  +|  *|  {|  [|  ]|  }|  \|  ~|
+    * |    #|  <|  ||  >|  +|  *|  {|  [|  ]|  }|  \|  ~| TODO: < | > { [ ] } \ ~
     * |-------------------------------------------------|
     * |    |       |    |     |       |    |     |      |
     * `-------------------------------------------------'
     */
    KEYMAP(
-     FN3 ,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0,  TRNS, \
-     ESC  ,FN14,FN15,FN16,FN17,FN18,FN19,   4,   5,   6,VOLU,  ENT, \
-     TRNS  ,TRNS,TRNS,TRNS,TRNS,TRNS,   0,   1,   2,   3,VOLD,TRNS, \
+     GRV , FN5, FN6, FN7, FN8, FN9,FN10,FN11,FN12,FN13,FN14,  FN17, \
+     FN18 ,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, FN15, \
+     BSLS  ,TRNS,TRNS,TRNS,RBRC,FN20,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
    /* Layer: Layer for Function keys and Unicode Symbols MOMENTARY
@@ -71,27 +71,27 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const action_t PROGMEM fn_actions[] = {
-    [0]  = ACTION_LAYER_MOMENTARY(1),
-    [1]  = ACTION_LAYER_MOMENTARY(2),
-    [2]  = ACTION_LAYER_TOGGLE(3),
-    [3]  = ACTION_MODS_KEY(MOD_LSFT, KC_GRV),
-    [4]  = ACTION_MODS_KEY(MOD_LSFT, KC_1),
-    [5]  = ACTION_MODS_KEY(MOD_LSFT, KC_2),
-    [6]  = ACTION_MODS_KEY(MOD_LSFT, KC_3),
-    [7]  = ACTION_MODS_KEY(MOD_LSFT, KC_4),
-    [8]  = ACTION_MODS_KEY(MOD_LSFT, KC_5),
-    [9]  = ACTION_MODS_KEY(MOD_LSFT, KC_6),
-    [10] = ACTION_MODS_KEY(MOD_LSFT, KC_7),
-    [11] = ACTION_MODS_KEY(MOD_LSFT, KC_8),
-    [12] = ACTION_MODS_KEY(MOD_LSFT, KC_9),
-    [13] = ACTION_MODS_KEY(MOD_LSFT, KC_0),
-    [14] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),
-    [15] = ACTION_MODS_KEY(MOD_LSFT, KC_QUOT),
-    [16] = ACTION_MODS_KEY(MOD_LSFT, KC_MINS),
-    [17] = ACTION_MODS_KEY(MOD_LSFT, KC_EQL),
-    [18] = ACTION_MODS_KEY(MOD_LSFT, KC_LBRC),
-    [19] = ACTION_MODS_KEY(MOD_LSFT, KC_RBRC),
-    [20] = ACTION_BACKLIGHT_STEP(),
-    [21] = ACTION_LAYER_TAP_KEY(1, KC_QUOT),
-    [22] = ACTION_MODS_TAP_KEY(MOD_LSFT, KC_ESC)
+  /*[0]  = ???,*/
+    [1]  = ACTION_LAYER_MOMENTARY(1),
+    [2]  = ACTION_LAYER_MOMENTARY(2),
+    [3]  = ACTION_LAYER_MOMENTARY(3),
+    [4]  = ACTION_MODS_KEY(MOD_LSFT, KC_GRV),
+    [5]  = ACTION_MODS_KEY(MOD_LSFT, KC_1),
+    [6]  = ACTION_MODS_KEY(MOD_LSFT, KC_2),
+    [7]  = ACTION_MODS_KEY(MOD_LSFT, KC_3),
+    [8]  = ACTION_MODS_KEY(MOD_LSFT, KC_4),
+    [9]  = ACTION_MODS_KEY(MOD_LSFT, KC_5),
+    [10]  = ACTION_MODS_KEY(MOD_LSFT, KC_6),
+    [11] = ACTION_MODS_KEY(MOD_LSFT, KC_7),
+    [12] = ACTION_MODS_KEY(MOD_LSFT, KC_8),
+    [13] = ACTION_MODS_KEY(MOD_LSFT, KC_9),
+    [14] = ACTION_MODS_KEY(MOD_LSFT, KC_0),
+    [15] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS), // #' key
+    [16] = ACTION_MODS_KEY(MOD_LSFT, KC_QUOT),
+    [17] = ACTION_MODS_KEY(MOD_LSFT, KC_MINS), // ß?\ key
+    [18] = ACTION_MODS_KEY(MOD_LSFT, KC_EQL),  // ´` key
+    [19] = ACTION_MODS_KEY(MOD_LSFT, KC_LBRC), // ü key
+    [20] = ACTION_MODS_KEY(MOD_LSFT, KC_RBRC), // +*~ key
+    [21] = ACTION_MODS_TAP_KEY(MOD_LSFT, KC_ESC),
+    [22] = ACTION_MODS_TAP_KEY(MOD_LCTRL, KC_TAB)
 };
