@@ -3,28 +3,28 @@
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    /* Layer: Base Layer
     * ,-------------------------------------------------.
-    * |Tab|  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P| BSp |
+    * |Esc|  Q|  W|  E|  R|  T|  Z|  U|  I|  O|  P| BSp |
     * |-------------------------------------------------|
-    * |FN1 |  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|Fn1'|
+    * |Ctrl|  A|  S|  D|  F|  G|  H|  J|  K|  L|  /|Fn2 |
     * |-------------------------------------------------|
-    * |SftEs|  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|FN2|
+    * |Shift|  Y|  X|  C|  V|  B|  N|  M|  ,|  .|  -|Sft|
     * |-------------------------------------------------|
-    * |Ctrl|  FN2  |Gui |Enter| Space |Alt |Shift|  FN3 |
+    * |Alt |  XXX  |XXX |Enter| Space |XXX |XXX  |  Fn3 |
     * `-------------------------------------------------'
     */
    KEYMAP(
-     TAB ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
-     FN0  ,   A,   S,   D,   F,   G,   H,   J,   K,   L,SCLN, FN21, \
-     FN22  ,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,SLSH, FN1, \
-     LCTL,  FN1,  LGUI,     ENT,       SPC,   RALT,   RSFT,  FN2    ),
+     ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
+     LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,FN10, FN1,  \
+     LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,SLSH, RSHIFT, \
+     LALT,  FN1,  LGUI,     ENT,       SPC,   RALT,   RSFT,  FN2    ),
 
-   /* Layer: Function Layer 1
+   /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) TOGGLE
     * ,-------------------------------------------------.
-    * |  `|  !|  @|  #|  $|  %|  ^|  &|  *|  (|  )| Del |
+    * |   |   |wrd|   |END|   |   |PUp|   |   |Hom| Del |
     * |-------------------------------------------------|
-    * |    |  \|  '|  -|  =|  [|  ]| Dn| Up|Lft| Rt|    |
+    * |    |   |   |PDn|   |   |Lft| Up| Dn| Rt|   |    |
     * |-------------------------------------------------|
-    * |     |Esc|LED|PSc|   |   |   |Stp|Ply|Prv|Nxt|Sft|
+    * |     |Psc|   |   |   |bck|   |   |   |   |   |   |
     * |-------------------------------------------------|
     * |    |  Gui  |    |     |       |    |     |      |
     * `-------------------------------------------------'
@@ -35,13 +35,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      TRNS  , ESC,FN20,PSCR,TRNS,TRNS,TRNS,MSTP,MPLY,MPRV,MNXT,RSFT, \
      TRNS, LGUI,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
-   /* Layer: Function Layer 2
+   /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+TOGGLE
     * ,-------------------------------------------------.
-    * |  ~|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|     |
+    * |  ^|  !|  "|  §|  $|  %|  &|  /|  (|  )|  =|   ? |
     * |-------------------------------------------------|
-    * | Esc|  ||  "|  _|  +|  {|  }|  4|  5|  6|Vl+|Entr|
+    * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  ' |
     * |-------------------------------------------------|
-    * |     |   |   |   |   |   |   |  1|  2|  3|Vl-|   |
+    * |    #|  <|  ||  >|  +|  *|  {|  [|  ]|  }|  \|  ~|
     * |-------------------------------------------------|
     * |    |       |    |     |       |    |     |      |
     * `-------------------------------------------------'
@@ -52,15 +52,15 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      TRNS  ,TRNS,TRNS,TRNS,TRNS,TRNS,   0,   1,   2,   3,VOLD,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
-   /* Layer: Game Layer
+   /* Layer: Layer for Function keys and Unicode Symbols MOMENTARY
     * ,-------------------------------------------------.
-    * |   |   |   |   |   |   |   | F1| F2| F3| F4|     |
+    * | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|  F12|
     * |-------------------------------------------------|
-    * | Esc|   |   |   |   |   |   | F5| F6| F7| F8|Entr|
+    * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|Entr|
     * |-------------------------------------------------|
-    * |Shift|  1|  2|  3|  4|  5|  6| F9|F10|F11|F12|Sft|
+    * |     |LED|Fls|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
     * |-------------------------------------------------|
-    * |    | Shift |  B |Space|    C  |    |     |      |
+    * |    |       |    |Space| Enter |    |     |      |
     * `-------------------------------------------------'
     */
    KEYMAP(
