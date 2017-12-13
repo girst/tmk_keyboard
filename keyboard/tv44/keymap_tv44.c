@@ -1,23 +1,67 @@
-#include "keymap_common.h"
-   // use ____ or TODO as keyboard keys in KEYMAP
-   #define KC_____ KC_NO
-   #define KC_TODO KC_NO
+#include "actionmap.h"
+#include "action_code.h"
+#include "actionmap_common.h"
+   // use ____ or T0D0 as keyboard keys in KEYMAP
+   #define AC_____ AC_NO
+   #define AC_TODO AC_NO
 
 
 /* TODO XXX TODO:
- * single apostrophe has not been placed (best on layer2)
- * 
- * can.t hit ctrl-tab
+ * ^I(AC_TAB) has not been placed (best on layer2)
+ * §(AC_SECT) has not been placed (best on layer3)
  * 
  * define bottom row Fn keys
- * 
- * you can only have 32 Fn keys -- migrate shift+key and AltGr+key to actionmap
- * see: https://github.com/tmk/tmk_keyboard/wiki/FAQ-Keymap#actionmap
- *      http://kb.sized.io/
- * currently not placed due to shortage: ctrl-left, ctrl-right, µ
  */
 
-const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+// action key names are from german layout!
+#define AC_FN1  ACTION_LAYER_MOMENTARY(1)
+#define AC_FN2  ACTION_LAYER_MOMENTARY(2)
+#define AC_FN3  ACTION_LAYER_MOMENTARY(3)
+#define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
+#define AC_EXCL ACTION_MODS_KEY(MOD_LSFT, KC_1)
+#define AC_DQOT ACTION_MODS_KEY(MOD_LSFT, KC_2)
+#define AC_SECT ACTION_MODS_KEY(MOD_LSFT, KC_3)
+#define AC_DLLR ACTION_MODS_KEY(MOD_LSFT, KC_4)
+#define AC_PERC ACTION_MODS_KEY(MOD_LSFT, KC_5)
+#define AC_AMP  ACTION_MODS_KEY(MOD_LSFT, KC_6)
+#define AC_SLAS ACTION_MODS_KEY(MOD_LSFT, KC_7)
+#define AC_LPAR ACTION_MODS_KEY(MOD_LSFT, KC_8)
+#define AC_RPAR ACTION_MODS_KEY(MOD_LSFT, KC_9)
+#define AC_EQUL ACTION_MODS_KEY(MOD_LSFT, KC_0)
+#define AC_QEST ACTION_MODS_KEY(MOD_LSFT, KC_MINS)
+#define AC_GRAV ACTION_MODS_KEY(MOD_LSFT, KC_EQL)
+#define AC_SUP2 ACTION_MODS_KEY(MOD_RALT, KC_2)
+#define AC_SUP3 ACTION_MODS_KEY(MOD_RALT, KC_3)
+#define AC_LBRA ACTION_MODS_KEY(MOD_RALT, KC_7)
+#define AC_LBRK ACTION_MODS_KEY(MOD_RALT, KC_8)
+#define AC_RBRK ACTION_MODS_KEY(MOD_RALT, KC_9)
+#define AC_RBRA ACTION_MODS_KEY(MOD_RALT, KC_0)
+#define AC_BKSL ACTION_MODS_KEY(MOD_RALT, KC_MINS)
+#define AC_ASTK ACTION_MODS_KEY(MOD_LSFT, KC_RBRC)
+#define AC_SQOT ACTION_MODS_KEY(MOD_LSFT, KC_NUHS)
+#define AC_AT   ACTION_MODS_KEY(MOD_RALT, KC_Q)
+#define AC_EUR  ACTION_MODS_KEY(MOD_RALT, KC_E)
+#define AC_TILD ACTION_MODS_KEY(MOD_RALT, KC_RBRC)
+#define AC_RANG ACTION_MODS_KEY(MOD_LSFT, KC_NUBS)
+#define AC_BAR  ACTION_MODS_KEY(MOD_RALT, KC_NUBS)
+#define AC_MU   ACTION_MODS_KEY(MOD_RALT, KC_M)
+#define AC_CIRC AC_GRV
+#define AC_SS   AC_MINS
+#define AC_PLUS AC_RBRC
+#define AC_HASH AC_NUHS
+#define AC_LANG AC_NUBS
+#define AC_DASH AC_SLSH
+#define AC_WORD ACTION_MODS_KEY(MOD_LCTL, KC_RIGHT)
+#define AC_BACK ACTION_MODS_KEY(MOD_LCTL, KC_LEFT)
+#define AC_AUML AC_QUOT
+#define AC_OUML AC_SCLN
+#define AC_UUML AC_LBRC
+#define AC_aUML AC_QUOT
+#define AC_oUML AC_SCLN
+#define AC_uUML AC_LBRC
+
+
+const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
    /* Layer: Base Layer
     * ,-------------------------------------------------.
     * |Esc|  Q|  W|  E|  R|  T|  Z|  U|  I|  O|  P| BSp |
@@ -29,96 +73,60 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |Alt |  XXX  |XXX |Enter| Space |XXX |XXX  |  Fn3 | TODO: where to put Fn1
     * `-------------------------------------------------'
     */
-   KEYMAP(
+   ACTIONMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
-     FN0  ,   A,   S,   D,   F,   G,   H,   J,   K,   L,FN11, FN2,  \
-     LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,SLSH, RSHIFT, \
+     LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLAS, FN2,  \
+     LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,DASH, RSHIFT, \
      LALT,  FN1,  LGUI,     ENT,       SPC,   RALT,   RSFT,  FN3    ),
 
    /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) TOGGLE
     * ,-------------------------------------------------.
     * |Esc|   |wrd|   |END|   |   |PUp|   |Hom|   | Del | TODO: move Home?
-    * |-------------------------------------------------| TODO: ctrl-right: use actionmap
+    * |-------------------------------------------------|
     * |    |   |   |PDn|   |   |Lft| Up| Dn| Rt|   |    |
     * |-------------------------------------------------|
-    * |     |Psc|   |   |   |bck|   |   |   |   |   |   | TODO: where NUM, CAPS, SCROLL, PAUSE
-    * |-------------------------------------------------| TODO: ctrl-left: use actionmap
+    * |     |Psc|   |   |   |bck|   |   |   |   |   |   | TODO: where NUM, CAPS,
+    * |-------------------------------------------------|       SCROLL, PAUSE
     * |    |  Gui  |    |     |       |    |     |      |
     * `-------------------------------------------------'
-    */ //TODO
-   KEYMAP(
-     ESC ,____,TODO,____, END,____,____,PGUP,____,HOME,____,   DEL, \
+    */
+   ACTIONMAP(
+     ESC ,____,WORD,____, END,____,____,PGUP,____,HOME,____,   DEL, \
      TRNS ,____,____,PGDN,____,TRNS,LEFT,DOWN,  UP,RGHT,____, TRNS, \
-     TRNS  ,PSCR,____,____,____,TODO,____,____,____,____,____,____, \
+     TRNS  ,PSCR,____,____,____,BACK,____,____,____,____,____,____, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
    /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+TOGGLE
     * ,-------------------------------------------------.
-    * |  ^|  !|  "|  §|  $|  %|  &|  /|  (|  )|  =|   ? |
+    * |  ^|  !|  "|  '|  $|  %|  &|  /|  (|  )|  =|   ? |
     * |-------------------------------------------------|
-    * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|Fn2 | TODO: where to put FN15='
+    * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|Fn2 | TODO: where to put §
     * |-------------------------------------------------|
     * |    #|  <|  ||  >|  +|  *|  {|  [|  ]|  }|  \|  ~|
     * |-------------------------------------------------|
     * |    |       |    |     |       |    |     |      |
     * `-------------------------------------------------'
     */
-   KEYMAP(
-     GRV , FN5, FN6, FN7, FN8, FN9,FN10,FN11,FN12,FN13,FN14,  FN17, \
-     FN18 ,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, TRNS, \
-     BSLS  ,NUBS,FN30,FN31,RBRC,FN20,FN24,FN25,FN26,FN27,FN28,FN29, \
+   ACTIONMAP(
+     CIRC,EXCL,DQOT,SQOT,DLLR,PERC, AMP,SLAS,LPAR,RPAR,EQUL,  QEST, \
+     GRAV ,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, TRNS, \
+     HASH  ,LANG, BAR,RANG,PLUS,ASTK,LBRA,LBRK,RBRK,RBRA,BKSL,TILD, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
    /* Layer: Layer for Function keys and Unicode Symbols MOMENTARY
     * ,-------------------------------------------------.
     * | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|  F12|
     * |-------------------------------------------------|
-    * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|Entr| Ä=" Ö=: Ü={
+    * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|Entr|
     * |-------------------------------------------------|
-    * |     |   |   |  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   | ä=' ö=; ü=[ ß=-
-    * |-------------------------------------------------| TODO: µ
+    * |     |   |   |  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
+    * |-------------------------------------------------|
     * |    |       |    |Space| Enter |    |     |      |
     * `-------------------------------------------------'
     */
-   KEYMAP(
+   ACTIONMAP(
      F1  ,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11,   F12, \
-     TRNS ,____,____,____,____,____,____,____,FN16,FN21,FN19,  ENT, \
-     TRNS  ,____,____, FN4,FN22,FN23,TODO,QUOT,SCLN,LBRC,MINS,RSFT, \
+     TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML,  ENT, \
+     TRNS  ,____,____, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
      TRNS, TRNS,  TRNS,     SPC,       ENT,   TRNS,   TRNS,  TRNS  ),
-};
-
-const action_t PROGMEM fn_actions[] = {
-    [0] =  ACTION_MODS_TAP_KEY(MOD_LCTL, KC_TAB),
-    [1]  = ACTION_LAYER_MOMENTARY(1),
-    [2]  = ACTION_LAYER_MOMENTARY(2),
-    [3]  = ACTION_LAYER_MOMENTARY(3),
-    [4]  = ACTION_MODS_KEY(MOD_LSFT, KC_GRV),
-    [5]  = ACTION_MODS_KEY(MOD_LSFT, KC_1),
-    [6]  = ACTION_MODS_KEY(MOD_LSFT, KC_2),
-    [7]  = ACTION_MODS_KEY(MOD_LSFT, KC_3),
-    [8]  = ACTION_MODS_KEY(MOD_LSFT, KC_4),
-    [9]  = ACTION_MODS_KEY(MOD_LSFT, KC_5),
-    [10] = ACTION_MODS_KEY(MOD_LSFT, KC_6),
-    [11] = ACTION_MODS_KEY(MOD_LSFT, KC_7),
-    [12] = ACTION_MODS_KEY(MOD_LSFT, KC_8),
-    [13] = ACTION_MODS_KEY(MOD_LSFT, KC_9),
-    [14] = ACTION_MODS_KEY(MOD_LSFT, KC_0),
-    [15] = ACTION_MODS_KEY(MOD_LSFT, KC_BSLS), // #' key
-    [16] = ACTION_MODS_KEY(MOD_LSFT, KC_QUOT), // ä key
-    [17] = ACTION_MODS_KEY(MOD_LSFT, KC_MINS), // ß?\ key
-    [18] = ACTION_MODS_KEY(MOD_LSFT, KC_EQL),  // ´` key
-    [19] = ACTION_MODS_KEY(MOD_LSFT, KC_LBRC), // ü key
-    [20] = ACTION_MODS_KEY(MOD_LSFT, KC_RBRC), // +*~ key
-    [21] = ACTION_MODS_KEY(MOD_LSFT, KC_SCLN), // ö key
-    [22] = ACTION_MODS_KEY(MOD_RALT, KC_2), // ²
-    [23] = ACTION_MODS_KEY(MOD_RALT, KC_3), // ³
-    [24] = ACTION_MODS_KEY(MOD_RALT, KC_7), // {
-    [25] = ACTION_MODS_KEY(MOD_RALT, KC_8), // [
-    [26] = ACTION_MODS_KEY(MOD_RALT, KC_9), // ]
-    [27] = ACTION_MODS_KEY(MOD_RALT, KC_0), // }
-    [28] = ACTION_MODS_KEY(MOD_RALT, KC_MINS), // "\"
-    [29] = ACTION_MODS_KEY(MOD_RALT, KC_RBRC), // ~
-    [30] = ACTION_MODS_KEY(MOD_RALT, KC_NUBS), // <|>
-    [31] = ACTION_MODS_KEY(MOD_LSFT, KC_NUBS), // <|>
-    //[32] = ACTION_MODS_KEY(MOD_RALT, KC_M), // µ TODO: use actionmap
 };
