@@ -5,7 +5,7 @@
 // action key names are for german layout!
 #define AC_____ AC_NO
 #define AC_FN1  ACTION_LAYER_MOMENTARY(1)
-#define AC_FN2  ACTION_LAYER_TAP_KEY(1, KC_ENT)  //make Fn2 send Return when nothing else pressed\\ ACTION_LAYER_MOMENTARY(2)
+#define AC_FN2  ACTION_LAYER_TAP_KEY(2, KC_ENT)  //make Fn2 send Return when nothing else pressed\\ ACTION_LAYER_MOMENTARY(2)
 #define AC_FN3  ACTION_LAYER_MOMENTARY(3)
 #define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
 #define AC_EXCL ACTION_MODS_KEY(MOD_LSFT, KC_1)
