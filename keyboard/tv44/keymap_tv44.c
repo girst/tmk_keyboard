@@ -3,12 +3,10 @@
 #include "actionmap_common.h"
    // use ____ or T0D0 as keyboard keys in KEYMAP
    #define AC_____ AC_NO
+   #define AC_TODO AC_NO
 
 
 /* TODO XXX TODO:
- * ^I(AC_TAB) has not been placed (best on layer2)
- * §(AC_SECT) has not been placed (best on layer3)
- * 
  * define bottom row Fn keys
  */
 
@@ -52,9 +50,9 @@
 #define AC_DASH AC_SLSH
 #define AC_WORD ACTION_MODS_KEY(MOD_LCTL, KC_RIGHT)
 #define AC_BACK ACTION_MODS_KEY(MOD_LCTL, KC_LEFT)
-#define AC_AUML ACTION_MODS_KEY(MOD_LSFT, AC_QUOT)
-#define AC_OUML ACTION_MODS_KEY(MOD_LSFT, AC_SCLN)
-#define AC_UUML ACTION_MODS_KEY(MOD_LSFT, AC_LBRC)
+#define AC_AUML ACTION_MODS_KEY(MOD_LSFT, KC_QUOT)
+#define AC_OUML ACTION_MODS_KEY(MOD_LSFT, KC_SCLN)
+#define AC_UUML ACTION_MODS_KEY(MOD_LSFT, KC_LBRC)
 #define AC_aUML AC_QUOT
 #define AC_oUML AC_SCLN
 #define AC_uUML AC_LBRC
@@ -65,41 +63,41 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,-------------------------------------------------.
     * |Esc|  Q|  W|  E|  R|  T|  Z|  U|  I|  O|  P| BSp |
     * |-------------------------------------------------|
-    * |C/^I|  A|  S|  D|  F|  G|  H|  J|  K|  L|  /|Fn2 |
+    * |Ctrl|  A|  S|  D|  F|  G|  H|  J|  K|  L|  /|Fn2 |
     * |-------------------------------------------------|
     * |Shift|  Y|  X|  C|  V|  B|  N|  M|  ,|  .|  -|Sft|
     * |-------------------------------------------------|
-    * |Alt |  XXX  |XXX |Enter| Space |XXX |XXX  |  Fn3 | TODO: where to put Fn1
+    * |Alt |  Tab  |Fn1 |Enter| Space |Fn1 |XXX  |  Fn3 |
     * `-------------------------------------------------'
     */
    ACTIONMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
      LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLAS, FN2,  \
      LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,DASH, RSHIFT, \
-     LALT,  FN1,  LGUI,     ENT,       SPC,   RALT,   RSFT,  FN3    ),
+     LALT,  TAB,  FN1 ,     ENT,       SPC,    FN1,   TODO,  FN3    ),
 
-   /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) TOGGLE
+   /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) ~~TOGGLE~~MOMENTARY
     * ,-------------------------------------------------.
-    * |Esc|   |wrd|   |END|   |   |PUp|   |Hom|   | Del | TODO: move Home?
+    * |Esc|   |wrd|   |END|   |   |PUp|   |Hom|   | Del |
     * |-------------------------------------------------|
     * |    |   |   |PDn|   |   |Lft| Up| Dn| Rt|   |    |
     * |-------------------------------------------------|
-    * |     |Psc|   |   |   |bck|   |   |   |   |   |   | TODO: where NUM, CAPS,
-    * |-------------------------------------------------|       SCROLL, PAUSE
+    * |     |PSc|   |   |   |bck|   |PAU|NUM|CAP|SCR|   |
+    * |-------------------------------------------------|
     * |    |  Gui  |    |     |       |    |     |      |
     * `-------------------------------------------------'
     */
    ACTIONMAP(
      ESC ,____,WORD,____, END,____,____,PGUP,____,HOME,____,   DEL, \
      TRNS ,____,____,PGDN,____,____,LEFT,DOWN,  UP,RGHT,____, TRNS, \
-     TRNS  ,PSCR,____,____,____,BACK,____,____,____,____,____,TRNS, \
+     TRNS  ,PSCR,____,____,____,BACK,____,PAUS,NLCK,CAPS,SLCK,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
-   /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+TOGGLE
+   /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+~~TOGGLE~~
     * ,-------------------------------------------------.
     * |  ^|  !|  "|  '|  $|  %|  &|  /|  (|  )|  =|   ? |
     * |-------------------------------------------------|
-    * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|Fn2 | TODO: where to put §
+    * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|Fn2 |
     * |-------------------------------------------------|
     * |    #|  <|  ||  >|  +|  *|  {|  [|  ]|  }|  \|  ~|
     * |-------------------------------------------------|
@@ -118,7 +116,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-------------------------------------------------|
     * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|Entr|
     * |-------------------------------------------------|
-    * |     |   |   |  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
+    * |     |   |  §|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
     * |-------------------------------------------------|
     * |    |       |    |Space| Enter |    |     |      |
     * `-------------------------------------------------'
@@ -126,6 +124,6 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ACTIONMAP(
      F1  ,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11,   F12, \
      TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML,  ENT, \
-     TRNS  ,____,____, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
+     TRNS  ,____,SECT, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
      TRNS, TRNS,  TRNS,     SPC,       ENT,   TRNS,   TRNS,  TRNS  ),
 };
