@@ -5,6 +5,8 @@ TV44 keyboard firmware
 ## Build
 Move to this directory then just run `make` like:
 
-    $ make
+    $ ./make
 
-Use `make -f Makefile.pjrc` if you want to use PJRC stack but I find no reason to do so now.
+To flash firmware to the board, issue (will PHONYly rebuild):
+
+    $ ./make flash
