@@ -6,8 +6,10 @@ make -f Makefile.actionmap
 case $1 in
 	flash)	sudo dfu-programmer atmega32u4 erase
 		sudo dfu-programmer atmega32u4 flash tv44_lufa.hex
-		sudo dfu-programmer atmega32u4 start;;
+		sudo dfu-programmer atmega32u4 start
+		make clean ;;
 esac
+
 
 :<<EOF
  9577  make clean
