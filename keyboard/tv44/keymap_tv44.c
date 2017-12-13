@@ -1,18 +1,11 @@
 #include "actionmap.h"
 #include "action_code.h"
 #include "actionmap_common.h"
-   // use ____ or T0D0 as keyboard keys in KEYMAP
-   #define AC_____ AC_NO
-   #define AC_TODO AC_NO
 
-
-/* TODO XXX TODO:
- * define bottom row Fn keys
- */
-
-// action key names are from german layout!
+// action key names are for german layout!
+#define AC_____ AC_NO
 #define AC_FN1  ACTION_LAYER_MOMENTARY(1)
-#define AC_FN2  ACTION_LAYER_MOMENTARY(2)
+#define AC_FN2  ACTION_LAYER_TAP_KEY(1, KC_ENT)  //make Fn2 send Return when nothing else pressed\\ ACTION_LAYER_MOMENTARY(2)
 #define AC_FN3  ACTION_LAYER_MOMENTARY(3)
 #define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
 #define AC_EXCL ACTION_MODS_KEY(MOD_LSFT, KC_1)
@@ -67,14 +60,14 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-------------------------------------------------|
     * |Shift|  Y|  X|  C|  V|  B|  N|  M|  ,|  .|  -|Sft|
     * |-------------------------------------------------|
-    * |Alt |  Tab  |Fn1 |Enter| Space |Fn1 |XXX  |  Fn3 |
+    * |Alt |  Tab  |Fn1 |Enter| Space |Fn1 |Super|  Fn3 |
     * `-------------------------------------------------'
     */
    ACTIONMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
      LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLAS, FN2,  \
      LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,DASH, RSHIFT, \
-     LALT,  TAB,  FN1 ,     ENT,       SPC,    FN1,   TODO,  FN3    ),
+     LALT,  TAB,  FN1 ,     ENT,       SPC,    FN1,   LGUI,  FN3    ),
 
    /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) ~~TOGGLE~~MOMENTARY
     * ,-------------------------------------------------.
@@ -84,7 +77,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-------------------------------------------------|
     * |     |PSc|   |   |   |bck|   |PAU|NUM|CAP|SCR|   |
     * |-------------------------------------------------|
-    * |    |  Gui  |    |     |       |    |     |      |
+    * |    |       |    |     |       |    |     |      |
     * `-------------------------------------------------'
     */
    ACTIONMAP(
@@ -116,7 +109,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-------------------------------------------------|
     * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|Entr|
     * |-------------------------------------------------|
-    * |     |   |  §|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
+    * |    @|  €|  §|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
     * |-------------------------------------------------|
     * |    |       |    |Space| Enter |    |     |      |
     * `-------------------------------------------------'
@@ -124,6 +117,6 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ACTIONMAP(
      F1  ,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11,   F12, \
      TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML,  ENT, \
-     TRNS  ,____,SECT, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
+     AT    , EUR,SECT, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
      TRNS, TRNS,  TRNS,     SPC,       ENT,   TRNS,   TRNS,  TRNS  ),
 };
