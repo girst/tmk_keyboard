@@ -5,7 +5,8 @@
 // action key names are for german layout!
 #define AC_____ AC_NO
 #define AC_FN1  ACTION_LAYER_MOMENTARY(1)
-#define AC_FN2  ACTION_LAYER_TAP_KEY(2, KC_ENT)  //make Fn2 send Return when nothing else pressed\\ ACTION_LAYER_MOMENTARY(2)
+//#define AC_FN2  ACTION_LAYER_TAP_KEY(2, KC_ENT)  //make Fn2 send Return when nothing else pressed\\ ACTION_LAYER_MOMENTARY(2)
+#define AC_FN2  ACTION_LAYER_MOMENTARY(2)
 #define AC_FN3  ACTION_LAYER_MOMENTARY(3)
 #define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
 #define AC_EXCL ACTION_MODS_KEY(MOD_LSFT, KC_1)
@@ -88,7 +89,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+~~TOGGLE~~
     * ,-------------------------------------------------.
-    * |  ^|  !|  "|  '|  $|  %|  &|  /|  (|  )|  =|   ? |
+    * |  ^|  !|  "|  '|  $|  %|  &|  @|  (|  )|  =|   ? |
     * |-------------------------------------------------|
     * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|Fn2 |
     * |-------------------------------------------------|
@@ -98,7 +99,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-------------------------------------------------'
     */
    ACTIONMAP(
-     CIRC,EXCL,DQOT,SQOT,DLLR,PERC, AMP,SLAS,LPAR,RPAR,EQUL,  QEST, \
+     CIRC,EXCL,DQOT,SQOT,DLLR,PERC, AMP,  AT,LPAR,RPAR,EQUL,  QEST, \
      GRAV ,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, TRNS, \
      HASH  ,LANG, BAR,RANG,PLUS,ASTK,LBRA,LBRK,RBRK,RBRA,BKSL,TILD, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
@@ -109,7 +110,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-------------------------------------------------|
     * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|Entr|
     * |-------------------------------------------------|
-    * |    @|  €|  §|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
+    * |     |  €|  §|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
     * |-------------------------------------------------|
     * |    |       |    |Space| Enter |    |     |      |
     * `-------------------------------------------------'
@@ -117,6 +118,6 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ACTIONMAP(
      F1  ,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11,   F12, \
      TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML,  ENT, \
-     AT    , EUR,SECT, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
+     TRNS  , EUR,SECT, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
      TRNS, TRNS,  TRNS,     SPC,       ENT,   TRNS,   TRNS,  TRNS  ),
 };
