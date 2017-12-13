@@ -3,7 +3,6 @@
 #include "actionmap_common.h"
    // use ____ or T0D0 as keyboard keys in KEYMAP
    #define AC_____ AC_NO
-   #define AC_TODO AC_NO
 
 
 /* TODO XXX TODO:
@@ -53,9 +52,9 @@
 #define AC_DASH AC_SLSH
 #define AC_WORD ACTION_MODS_KEY(MOD_LCTL, KC_RIGHT)
 #define AC_BACK ACTION_MODS_KEY(MOD_LCTL, KC_LEFT)
-#define AC_AUML AC_QUOT
-#define AC_OUML AC_SCLN
-#define AC_UUML AC_LBRC
+#define AC_AUML ACTION_MODS_KEY(MOD_LSFT, AC_QUOT)
+#define AC_OUML ACTION_MODS_KEY(MOD_LSFT, AC_SCLN)
+#define AC_UUML ACTION_MODS_KEY(MOD_LSFT, AC_LBRC)
 #define AC_aUML AC_QUOT
 #define AC_oUML AC_SCLN
 #define AC_uUML AC_LBRC
@@ -92,8 +91,8 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    ACTIONMAP(
      ESC ,____,WORD,____, END,____,____,PGUP,____,HOME,____,   DEL, \
-     TRNS ,____,____,PGDN,____,TRNS,LEFT,DOWN,  UP,RGHT,____, TRNS, \
-     TRNS  ,PSCR,____,____,____,BACK,____,____,____,____,____,____, \
+     TRNS ,____,____,PGDN,____,____,LEFT,DOWN,  UP,RGHT,____, TRNS, \
+     TRNS  ,PSCR,____,____,____,BACK,____,____,____,____,____,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
    /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+TOGGLE
