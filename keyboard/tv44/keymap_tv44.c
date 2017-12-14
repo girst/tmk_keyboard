@@ -5,18 +5,17 @@
 //#include "action_layer.h"
 #include "action_util.h"
 
-/* Pain Points:
- * ? should be backspace; move ? to shift+/   -- use ACTION_FUNCTION?
- * ~ is hard to reach, because Fn2 is directly above
- * (use clasic left hand mods: esc/tab/shift/ctrl-alt -- maybe toggleable)
- * (left fn1 and r-super are hard to reach -- not too worrying)
- * (left hand Fn2, but no key available)
+/* Bugs:
+ *  - Fn2 + ~ is uncomfortable
+ *  - Super + [hjkl] is uncomfortable
+ *  - toggleable clasic left hand mods: esc/tab/shift/ctrl-alt
  */
 
 // action key names are for german layout!
 #define AC_____ AC_NO
 #define AC_FN1  ACTION_LAYER_MOMENTARY(1)
 #define AC_FN2  ACTION_LAYER_MOMENTARY(2)
+#define AC_TAB2 ACTION_LAYER_TAP_KEY(2, KC_TAB)
 #define AC_FN3  ACTION_LAYER_MOMENTARY(3)
 #define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
 #define AC_EXCL ACTION_MODS_KEY(MOD_LSFT, KC_1)
@@ -29,7 +28,6 @@
 #define AC_LPAR ACTION_MODS_KEY(MOD_LSFT, KC_8)
 #define AC_RPAR ACTION_MODS_KEY(MOD_LSFT, KC_9)
 #define AC_EQUL ACTION_MODS_KEY(MOD_LSFT, KC_0)
-#define AC_QEST ACTION_MODS_KEY(MOD_LSFT, KC_MINS)
 #define AC_GRAV ACTION_MODS_KEY(MOD_LSFT, KC_EQL)
 #define AC_SUP2 ACTION_MODS_KEY(MOD_RALT, KC_2)
 #define AC_SUP3 ACTION_MODS_KEY(MOD_RALT, KC_3)
@@ -105,14 +103,14 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |-------------------------------------------------|
     * |Shift|  Y|  X|  C|  V|  B|  N|  M|  ,|  .|  -|Sft|
     * |-------------------------------------------------|
-    * |Alt |  Tab  |Fn1 |Enter| Space |Fn1 |Super|  Fn3 |
+    * |Alt |Tab/Fn2|Fn1 |Enter| Space |Fn1 |Super|  Fn3 |
     * `-------------------------------------------------'
     */
    ACTIONMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
      LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLQU, FN2,  \
      LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,DASH, RSHIFT, \
-     LALT,  TAB,  FN1 ,     ENT,       SPC,    FN1,   LGUI,  FN3    ),
+     LALT, TAB2,  FN1 ,     ENT,       SPC,    FN1,   LGUI,  FN3    ),
 
    /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) ~~TOGGLE~~MOMENTARY
     * ,-------------------------------------------------.
@@ -126,14 +124,14 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-------------------------------------------------'
     */
    ACTIONMAP(
-     ESC ,____,WORD,____, END,____,____,PGUP,____,HOME,____,   DEL, \
+     TRNS,____,WORD,____, END,____,____,PGUP,____,HOME,____,   DEL, \
      TRNS ,____,____,PGDN,____,____,LEFT,DOWN,  UP,RGHT,____, TRNS, \
      TRNS  ,PSCR,____,____,____,BACK,____,PAUS,NLCK,CAPS,SLCK,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
    /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+~~TOGGLE~~
     * ,-------------------------------------------------.
-    * |  ^|  !|  "|  '|  $|  %|  &|  @|  (|  )|  =|   ? |
+    * |  ^|  !|  "|  '|  $|  %|  &|  @|  (|  )|  =| BSp |
     * |-------------------------------------------------|
     * |   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|Fn2 |
     * |-------------------------------------------------|
@@ -143,7 +141,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-------------------------------------------------'
     */
    ACTIONMAP(
-     CIRC,EXCL,DQOT,SQOT,DLLR,PERC, AMP,  AT,LPAR,RPAR,EQUL,  QEST, \
+     CIRC,EXCL,DQOT,SQOT,DLLR,PERC, AMP,  AT,LPAR,RPAR,EQUL,  TRNS, \
      GRAV ,   1,   2,   3,   4,   5,   6,   7,   8,   9,   0, TRNS, \
      HASH  ,LANG, BAR,RANG,PLUS,ASTK,LBRA,LBRK,RBRK,RBRA,BKSL,TILD, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
