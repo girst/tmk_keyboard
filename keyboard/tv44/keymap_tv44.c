@@ -1,6 +1,9 @@
 #include "actionmap.h"
 #include "action_code.h"
 #include "actionmap_common.h"
+#include "action.h"
+//#include "action_layer.h"
+#include "action_util.h"
 
 /* Pain Points:
  * ? should be backspace; move ? to shift+/   -- use ACTION_FUNCTION?
@@ -57,14 +60,48 @@
 #define AC_aUML AC_QUOT
 #define AC_oUML AC_SCLN
 #define AC_uUML AC_LBRC
+#define AC_SLQU ACTION_FUNCTION(SLASH_QUESTION)
 
+enum function_id {
+	SLASH_QUESTION,
+};
+
+void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
+	void (*method)(uint8_t) = (record->event.pressed ? &add_key : &del_key);
+	uint8_t shifted = get_mods() & (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT));
+
+	switch (id) {
+	case SLASH_QUESTION:
+
+		if (shifted) {
+			// ? (modifiers already pressed)
+			method(KC_MINS);
+			send_keyboard_report();
+		} else {
+			// /
+			if (record->event.pressed) {
+				add_weak_mods(MOD_BIT(KC_LSHIFT));
+				send_keyboard_report();
+				method(KC_7);
+				send_keyboard_report();
+			} else {
+				method(KC_7);
+				send_keyboard_report();
+				del_weak_mods(MOD_BIT(KC_LSHIFT));
+				send_keyboard_report();
+			}
+		}
+
+		break;
+	}
+}
 
 const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
    /* Layer: Base Layer
     * ,-------------------------------------------------.
     * |Esc|  Q|  W|  E|  R|  T|  Z|  U|  I|  O|  P| BSp |
     * |-------------------------------------------------|
-    * |Ctrl|  A|  S|  D|  F|  G|  H|  J|  K|  L|  /|Fn2 |
+    * |Ctrl|  A|  S|  D|  F|  G|  H|  J|  K|  L| ?/|Fn2 |
     * |-------------------------------------------------|
     * |Shift|  Y|  X|  C|  V|  B|  N|  M|  ,|  .|  -|Sft|
     * |-------------------------------------------------|
@@ -73,7 +110,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    ACTIONMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
-     LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLAS, FN2,  \
+     LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLQU, FN2,  \
      LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,DASH, RSHIFT, \
      LALT,  TAB,  FN1 ,     ENT,       SPC,    FN1,   LGUI,  FN3    ),
 
@@ -124,7 +161,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    ACTIONMAP(
      F1  ,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11,   F12, \
-     TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML, ____, \
+     TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML, TRNS, \
      TRNS  , EUR,SECT, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS  ),
 };
