@@ -76,11 +76,11 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
 		   switching to slashes. */
 		if (record->event.pressed) {
 			slqu_pressed = shifted?KC_MINS:KC_7;
-			add_weak_mods(MOD_BIT(KC_LSHIFT));	send_keyboard_report();
-			add_key(slqu_pressed);			send_keyboard_report();
+			add_weak_mods(MOD_BIT(KC_LSHIFT)), send_keyboard_report();
+			add_key(slqu_pressed),             send_keyboard_report();
 		} else {
-			del_key(slqu_pressed);			send_keyboard_report();
-			del_weak_mods(MOD_BIT(KC_LSHIFT));	send_keyboard_report();
+			del_key(slqu_pressed),             send_keyboard_report();
+			del_weak_mods(MOD_BIT(KC_LSHIFT)), send_keyboard_report();
 		}
 		break;
 	}
