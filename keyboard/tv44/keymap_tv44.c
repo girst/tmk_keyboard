@@ -2,10 +2,17 @@
 #include "action_code.h"
 #include "actionmap_common.h"
 
+/* Pain Points:
+ * ? should be backspace; move ? to shift+/   -- use ACTION_FUNCTION?
+ * ~ is hard to reach, because Fn2 is directly above
+ * (use clasic left hand mods: esc/tab/shift/ctrl-alt -- maybe toggleable)
+ * (left fn1 and r-super are hard to reach -- not too worrying)
+ * (left hand Fn2, but no key available)
+ */
+
 // action key names are for german layout!
 #define AC_____ AC_NO
 #define AC_FN1  ACTION_LAYER_MOMENTARY(1)
-//#define AC_FN2  ACTION_LAYER_TAP_KEY(2, KC_ENT)  //make Fn2 send Return when nothing else pressed\\ ACTION_LAYER_MOMENTARY(2)
 #define AC_FN2  ACTION_LAYER_MOMENTARY(2)
 #define AC_FN3  ACTION_LAYER_MOMENTARY(3)
 #define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
@@ -108,16 +115,16 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,-------------------------------------------------.
     * | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|  F12|
     * |-------------------------------------------------|
-    * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|Entr|
+    * |    |   |   |   |   |   |   |   |  Ä|  Ö|  Ü|    |
     * |-------------------------------------------------|
     * |     |  €|  §|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|   |
     * |-------------------------------------------------|
-    * |    |       |    |Space| Enter |    |     |      |
+    * |    |       |    |     |       |    |     |  Fn3 |
     * `-------------------------------------------------'
     */
    ACTIONMAP(
      F1  ,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11,   F12, \
-     TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML,  ENT, \
+     TRNS ,____,____,____,____,____,____,____,AUML,OUML,UUML, ____, \
      TRNS  , EUR,SECT, DEG,SUP2,SUP3,  MU,aUML,oUML,uUML,  SS,TRNS, \
-     TRNS, TRNS,  TRNS,     SPC,       ENT,   TRNS,   TRNS,  TRNS  ),
+     TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS  ),
 };
