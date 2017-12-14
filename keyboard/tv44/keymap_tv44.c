@@ -106,7 +106,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) ~~TOGGLE~~MOMENTARY
     * ,-------------------------------------------------.
-    * |Esc|   |wrd|   |END|   |   |PUp|   |Hom|   | Del |
+    * |Esc|   |wrd|   |END|   |   |PUp|   |Hom|Ins| Del |
     * |-------------------------------------------------|
     * |    |   |   |PDn|   |   |Lft| Up| Dn| Rt|   |    |
     * |-------------------------------------------------|
@@ -116,7 +116,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-------------------------------------------------'
     */
    ACTIONMAP(
-     TRNS,____,WORD,____, END,____,____,PGUP,____,HOME,____,   DEL, \
+     TRNS,____,WORD,____, END,____,____,PGUP,____,HOME, INS,   DEL, \
      TRNS ,____,____,PGDN,____,____,LEFT,DOWN,  UP,RGHT,____, TRNS, \
      TRNS  ,PSCR,____,____,____,BACK,____,PAUS,NLCK,CAPS,SLCK,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),

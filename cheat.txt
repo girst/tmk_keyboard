@@ -11,7 +11,7 @@ Layer 0: Base Layer
 
 Layer 1: Movement and Miscellaneous
 ,-------------------------------------------------.
-|Esc|   |wrd|   |END|   |   |PUp|   |Hom|   | Del |
+|Esc|   |wrd|   |End|   |   |PUp|   |Hom|Ins| Del |
 |-------------------------------------------------|
 |Ctrl|   |   |PDn|   |   |Lft| Up| Dn| Rt|   |    |
 |-------------------------------------------------|
