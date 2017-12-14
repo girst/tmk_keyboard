@@ -2,12 +2,10 @@
 #include "action_code.h"
 #include "actionmap_common.h"
 #include "action.h"
-//#include "action_layer.h"
 #include "action_util.h"
 
-/* Bugs:
- *  - Fn2 + ~ is uncomfortable
- *  - Super + [hjkl] is uncomfortable
+/* Notes:
+ *  - Tab and Super+[hjkl] are uncomfortable to type
  *  - toggleable clasic left hand mods: esc/tab/shift/ctrl-alt
  */
 
@@ -65,31 +63,25 @@ enum function_id {
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
-	void (*method)(uint8_t) = (record->event.pressed ? &add_key : &del_key);
 	uint8_t shifted = get_mods() & (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT));
+	static uint8_t slqu_pressed; //for SLASH_QUESTION
+
 
 	switch (id) {
 	case SLASH_QUESTION:
-
-		if (shifted) {
-			// ? (modifiers already pressed)
-			method(KC_MINS);
-			send_keyboard_report();
+		/* when the key is pressed without any modifiers, a slash (Shift+7)
+		   is typed; if shift is active, a question mark (Shift+ß) is typed.
+		   Minor difference to native behaviour: if shift is released while
+		   key is still held down, more question marks are typed instead of
+		   switching to slashes. */
+		if (record->event.pressed) {
+			slqu_pressed = shifted?KC_MINS:KC_7;
+			add_weak_mods(MOD_BIT(KC_LSHIFT));	send_keyboard_report();
+			add_key(slqu_pressed);			send_keyboard_report();
 		} else {
-			// /
-			if (record->event.pressed) {
-				add_weak_mods(MOD_BIT(KC_LSHIFT));
-				send_keyboard_report();
-				method(KC_7);
-				send_keyboard_report();
-			} else {
-				method(KC_7);
-				send_keyboard_report();
-				del_weak_mods(MOD_BIT(KC_LSHIFT));
-				send_keyboard_report();
-			}
+			del_key(slqu_pressed);			send_keyboard_report();
+			del_weak_mods(MOD_BIT(KC_LSHIFT));	send_keyboard_report();
 		}
-
 		break;
 	}
 }
