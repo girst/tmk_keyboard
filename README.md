@@ -1,3 +1,53 @@
+# girst's fork of evangs/tmk_keyboard
+
+This repository contains my keymap for the Minivan (rev2) keyboard. After changing the layout to my pleasing, I've converted the layout to use `actionmaps` to support all my planned features. Then, I merged upstream fixes from `tmk/tmk_keyboard`, because I needed `ba2883f`. The version without merges from upstream is preserved at branch `evangs_firmware`.
+
+```
+Layer 0: Base Layer
+,-------------------------------------------------.
+|Esc|  Q|  W|  E|  R|  T|  Z|  U|  I|  O|  P| BSp |
+|-------------------------------------------------|
+|Ctrl|  A|  S|  D|  F|  G|  H|  J|  K|  L| ?/|Fn2 |
+|-------------------------------------------------|
+|Shift|  Y|  X|  C|  V|  B|  N|  M|  ,|  .|  -|Sft|
+|-------------------------------------------------|
+|Alt |Tab/Fn2|Fn1 |Enter| Space |Fn1 |Super|  Fn3 |
+`-------------------------------------------------'
+
+Layer 1: Movement and Miscellaneous
+,-------------------------------------------------.
+|Esc|   |wrd|   |End|   |   |PUp|   |Hom|Ins| Del |
+|-------------------------------------------------|
+|Ctrl|   |   |PDn|   |   |Lft| Up| Dn| Rt|   |    |
+|-------------------------------------------------|
+|Shift|PSc|   |   |   |bck|   |Pau|NUM|CAP|SCR|Sft|
+|-------------------------------------------------|
+|Alt |       |    |     |       |    |Super|      |
+`-------------------------------------------------'
+
+Layer 2: Numbers and ASCII-Symbols
+,-------------------------------------------------.
+|  ^|  !|  "|  '|  $|  %|  &|  @|  (|  )|  =| BSp |
+|-------------------------------------------------|
+|   `|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|Fn2 |
+|-------------------------------------------------|
+|    #|  <|  ||  >|  +|  *|  {|  [|  ]|  }|  \|  ~|
+|-------------------------------------------------|
+|Alt |Tab/Fn2|    |     |       |    |Super|      |
+`-------------------------------------------------'
+
+Layer 3: Function Keys and Unicode Symbols
+,-------------------------------------------------.
+| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|  F12|
+|-------------------------------------------------|
+|Ctrl|   |   |   |   |   |   |   |  Ä|  Ö|  Ü|    |
+|-------------------------------------------------|
+|Shift|  €|  §|  °|  ²|  ³|  µ|  ä|  ö|  ü|  ß|Sft|
+|-------------------------------------------------|
+|Alt |       |    |     |       |    |Super|  Fn3 |
+`-------------------------------------------------'
+```
+
 TMK Keyboard Firmware Collection
 ================================
 This repository includes keyboard and converter firmware projects built with [`tmk_core`][tmk_core] keyboard library.
