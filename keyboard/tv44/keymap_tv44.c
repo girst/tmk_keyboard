@@ -5,8 +5,9 @@
 #include "action_util.h"
 
 /* Notes:
- *  - Tab and Super+[hjkl] are uncomfortable to type
- *  - toggleable clasic left hand mods: esc/tab/shift/ctrl-alt
+ *  - Super+[hjkl] are uncomfortable to type
+ *  - Fn3+[ÄÖÜäöüß] are uncomfortable to type
+ *  - Fn2+[\~] are not the most comfortable to type
  */
 
 // action key names are for german layout!
@@ -14,6 +15,8 @@
 #define AC_FN1  ACTION_LAYER_MOMENTARY(1)
 #define AC_FN2  ACTION_LAYER_MOMENTARY(2)
 #define AC_TAB2 ACTION_LAYER_TAP_KEY(2, KC_TAB)
+#define AC_TAB3 ACTION_MODS_TAP_KEY(MOD_LCTL, KC_TAB)
+#define AC_FN2_ENT ACTION_LAYER_TAP_KEY(2, KC_ENT)
 #define AC_FN3  ACTION_LAYER_MOMENTARY(3)
 #define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
 #define AC_EXCL ACTION_MODS_KEY(MOD_LSFT, KC_1)
@@ -87,7 +90,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
 }
 
 const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
-   /* Layer: Base Layer
+   /* Layer: Base Layer (L-CTRL is Tab too; R-Fn2 is Enter too)
     * ,-------------------------------------------------.
     * |Esc|  Q|  W|  E|  R|  T|  Z|  U|  I|  O|  P| BSp |
     * |-------------------------------------------------|
@@ -100,11 +103,11 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    ACTIONMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
-     LCTRL,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLQU, FN2,  \
+     TAB3 ,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLQU, FN2_ENT,  \
      LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,DASH, RSHIFT, \
      LALT, TAB2,  FN1 ,     ENT,       SPC,    FN1,   LGUI,  FN3    ),
 
-   /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) ~~TOGGLE~~MOMENTARY
+   /* Layer: Movement Layer (wrd=ctrl-right, bck=crtl-left) MOMENTARY
     * ,-------------------------------------------------.
     * |Esc|   |wrd|   |END|   |   |PUp|   |Hom|Ins| Del |
     * |-------------------------------------------------|
@@ -121,7 +124,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
      TRNS  ,PSCR,____,____,____,BACK,____,PAUS,NLCK,CAPS,SLCK,TRNS, \
      TRNS, TRNS,  TRNS,    TRNS,      TRNS,   TRNS,   TRNS,  TRNS   ),
 
-   /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY+~~TOGGLE~~
+   /* Layer: Numbers and ASCII-Symbols Layer MOMENTARY
     * ,-------------------------------------------------.
     * |  ^|  !|  "|  '|  $|  %|  &|  @|  (|  )|  =| BSp |
     * |-------------------------------------------------|
