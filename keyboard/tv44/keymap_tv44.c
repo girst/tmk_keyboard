@@ -16,7 +16,6 @@
 #define AC_FN2  ACTION_LAYER_MOMENTARY(2)
 #define AC_TAB2 ACTION_LAYER_TAP_KEY(2, KC_TAB)
 #define AC_TAB3 ACTION_MODS_TAP_KEY(MOD_LCTL, KC_TAB)
-#define AC_FN2_ENT ACTION_LAYER_TAP_KEY(2, KC_ENT)
 #define AC_FN3  ACTION_LAYER_MOMENTARY(3)
 #define AC_DEG  ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
 #define AC_EXCL ACTION_MODS_KEY(MOD_LSFT, KC_1)
@@ -72,18 +71,21 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
 
 	switch (id) {
 	case SLASH_QUESTION:
-		/* when the key is pressed without any modifiers, a slash (Shift+7)
-		   is typed; if shift is active, a question mark (Shift+ß) is typed.
-		   Minor difference to native behaviour: if shift is released while
-		   key is still held down, sharp Ss are typed instead of
+		/* emulates the [/?] key of U.S. keyboards
+		   See also: https://github.com/tmk/tmk_keyboard/issues/534
+		   Minor difference to native behaviour: if shift is released
+		   while key is still held down, sharp Ss are typed instead of
 		   switching to slashes. */
 		if (record->event.pressed) {
 			slqu_pressed = shifted?KC_MINS:KC_7;
-			add_weak_mods(MOD_BIT(KC_LSHIFT)), send_keyboard_report();
-			add_key(slqu_pressed),             send_keyboard_report();
+
+			add_weak_mods(MOD_BIT(KC_LSHIFT));
+			add_key(slqu_pressed);
+			send_keyboard_report();
 			del_weak_mods(MOD_BIT(KC_LSHIFT));
 		} else {
-			del_key(slqu_pressed),             send_keyboard_report();
+			del_key(slqu_pressed);
+			send_keyboard_report();
 		}
 		break;
 	}
@@ -103,7 +105,7 @@ const action_t PROGMEM actionmaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    ACTIONMAP(
      ESC ,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,  BSPC, \
-     TAB3 ,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLQU, FN2_ENT,  \
+     TAB3 ,   A,   S,   D,   F,   G,   H,   J,   K,   L,SLQU, FN2,  \
      LSHIFT,   Z,   X,   C,   V,   B,   N,   M,COMM, DOT,DASH, RSHIFT, \
      LALT, TAB2,  FN1 ,     ENT,       SPC,    FN1,   LGUI,  FN3    ),
 
